@@ -1,0 +1,56 @@
+
+<div style="height: 100%;">
+  <mat-toolbar>
+    <button mat-button><a href="/dashboard">Dashboard</a></button>
+    <button mat-button><a href="/shop/articulos">Catálogo de Articulos</a></button>
+    <button mat-button><a href="/shop/carrito">Carrito</a></button>
+  </mat-toolbar>
+</div>
+
+<div class="col-12">
+    <mat-card class="cardWithShadow">
+      <h1>ARTICULOS EN CARRITO</h1>
+    </mat-card>
+</div>
+
+  <div class="example-container mat-elevation-z8">
+      <mat-table #table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef> Id. </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.articulo_id}} </mat-cell>
+        </ng-container>
+    
+        <ng-container matColumnDef="nombre">
+          <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.articulo_nombre}} </mat-cell>
+        </ng-container>
+        
+        <ng-container matColumnDef="precio">
+          <mat-header-cell *matHeaderCellDef> Precio </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.articulo_precio}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="cantidad">
+          <mat-header-cell *matHeaderCellDef> Cantidad </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.articulo_cantidad}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="accion">
+          <mat-header-cell *matHeaderCellDef> Opciones </mat-header-cell>
+          <mat-cell *matCellDef="let element"> 
+              
+              <button color="accent" 
+                  mat-raised-button (click)="deleteArticuloCarrito(element)">Eliminar del carrito</button>
+
+          </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+    </div>
+<br>
+    <mat-card class="cardWithShadow">
+      <h1>Total ${{ totalPrecio}}</h1>
+    </mat-card>
